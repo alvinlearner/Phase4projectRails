@@ -2,22 +2,26 @@ class UsersController < ApplicationController
     #  Create a new user when signing up
     def register
         user = User.create(user_params)
-        if user.valid?
-            render json: user, status: :created
-        else
-            render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
-        end
+     if user.valid?
+       session[:user_id] = user.id # Save user id in the session
+       render json: user, status: :created
+     else
+       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+     end
     end
+
+
+
     
     # Keep user logged in 
-    def login
+    def show
         user = User.find_by(id: session[:user_id])
         if user
           render json: user
         else
-          render json: { error: "User not found" }, status: :not_found
+          render json: { error: "Not authorized" }, status: :unauthorized
         end
-    end
+      end
 
     def count
         users = User.all

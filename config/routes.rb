@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/events/:id', to: 'events#show'
 
-  get "/me", to: "users#login"
+  get "/me", to: "users#show"
   post "/register", to: "users#register"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
