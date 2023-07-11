@@ -8,6 +8,12 @@ class UsersController < ApplicationController
      else
        render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
      end
+
+      # Set the CORS headers
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:4000'
+    response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+
     end
 
 
