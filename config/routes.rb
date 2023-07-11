@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get '/events/:id', to: 'events#show'
 
   get "/me", to: "users#show"
-  post "/register", to: "users#register"
+  # post "/register", to: "users#register"
+  match '/register', to: 'users#register', via: [:options, :post]
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/users_statistics", to: "users#count"
