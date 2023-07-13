@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :attendees, only: [:create, :show, :index]
   resources :posts
   resources :events 
-  resources :users
+  # resources :users
 
   get '/events/:id', to: 'events#show'
 
